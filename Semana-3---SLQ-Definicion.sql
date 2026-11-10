@@ -20,6 +20,13 @@ CREATE TABLE productos (
 	activo BIT DEFAULT 1,--1 Activo 0 Inactivo
 	FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
+CREATE TABLE clientes (
+	id_cliente INT PRIMARY KEY,
+	nombre VARCHAR (100) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	ciudad VARCHAR(50),
+	fecha_registro DATE NOT NULL
+);
 --Tabla ventas
 CREATE TABLE ventas (
 	id_venta INT PRIMARY KEY,
@@ -30,14 +37,6 @@ CREATE TABLE ventas (
 	fecha_venta DATE NOT NULL,
 	FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
 	FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
-);
-
-CREATE TABLE clientes (
-	id_cliente INT PRIMARY KEY,
-	nombre VARCHAR (100) NOT NULL,
-	email VARCHAR(100) NOT NULL,
-	ciudad VARCHAR(50),
-	fecha_registro DATE NOT NULL
 );
 
 -- INSERTAR DATOS EN LA BD
