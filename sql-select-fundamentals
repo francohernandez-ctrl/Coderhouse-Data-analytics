@@ -55,6 +55,83 @@ SELECT
 
 FROM sales;
 
+--SQL Select Fundamentals
+
+-- Descripción
+
+--Este repositorio contiene consultas SQL básicas desarrolladas para el caso de negocio de TechStore. El objetivo es practicar el uso de la sentencia `SELECT`, 
+--la selección específica de columnas y la utilización de alias para generar reportes más comprensibles para usuarios del área de negocio.
+-- ¿Por qué es mala práctica usar SELECT * en producción?
+
+--Aunque `SELECT *` puede ser útil durante la exploración inicial de una tabla, generalmente se considera una mala práctica en entornos productivos por las siguientes razones:
+
+--1. Rendimiento
+
+--Cuando se utiliza `SELECT *`, la base de datos devuelve todas las columnas de la tabla, incluso aquellas que no son necesarias para el análisis. Esto aumenta el volumen de datos transferidos y puede afectar el rendimiento de la consulta.
+
+--Ejemplo:
+
+```sql
+SELECT *
+FROM sales;
+```
+
+--Si únicamente se necesita conocer el importe de venta, es más eficiente consultar:
+
+```sql
+SELECT total_amount
+FROM sales;
+```
+
+--2. Mantenibilidad
+
+--Las consultas que especifican explícitamente las columnas son más fáciles de entender y mantener. Si en el futuro se agregan nuevas columnas a la tabla, una consulta con `SELECT *` devolverá resultados distintos sin que el desarrollador haya modificado el código.
+
+--Ejemplo recomendado:
+
+```sql
+SELECT
+    customer_id,
+    product_id,
+    total_amount
+FROM sales;
+```
+
+--3. Seguridad
+
+--Utilizar `SELECT *` puede exponer información innecesaria o sensible que los usuarios no necesitan visualizar. Al especificar únicamente las columnas requeridas, se reduce el riesgo de mostrar datos no autorizados.
+
+---
+
+--¿Por qué son importantes los alias para un stakeholder no técnico?
+
+--Los alias permiten reemplazar nombres técnicos por nombres más claros y comprensibles para las áreas de negocio.
+
+--Por ejemplo, la columna:
+
+```sql
+total_amount
+```
+
+--puede no ser completamente intuitiva para algunos usuarios finales. Utilizando un alias se puede presentar de forma más amigable:
+
+```sql
+SELECT total_amount AS monto_total
+FROM sales;
+```
+
+--Ahora el resultado mostrará una columna llamada `monto_total`, lo que facilita la comprensión inmediata por parte del equipo de finanzas.
+
+--Otro ejemplo es:
+
+```sql
+SELECT
+    order_date AS fecha_pedido,
+    product_name AS nombre_producto,
+    quantity AS cantidad_unidades
+FROM sales;
+```
+--Gracias a los alias, los reportes son más fáciles de interpretar para usuarios que no conocen la estructura técnica de la base de datos. Esto mejora la comunicación entre los equipos técnicos y las áreas de negocio.
 
 
 
